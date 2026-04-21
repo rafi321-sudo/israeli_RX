@@ -36,7 +36,7 @@ html,body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size
 .db-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px solid var(--line2);border-radius:20px;font-size:11px;color:var(--tx2)}
 .db-dot{width:6px;height:6px;border-radius:50%;background:var(--tx3);transition:background .3s;flex-shrink:0}
 .db-dot.ready{background:var(--teal);box-shadow:0 0 5px rgba(45,200,154,0.5)}
-.hist-btn{display:flex;align-items:center;gap:6px;padding:6px 13px;background:var(--bg3);border:1px solid var(--line2);border-radius:8px;font-size:12px;font-weight:500;color:var(--tx2);cursor:pointer;font-family:var(--font);transition:all .15s}
+.hist-btn{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg3);border:1px solid var(--line2);border-radius:8px;font-size:12px;font-weight:500;color:var(--tx2);cursor:pointer;font-family:var(--font);transition:all .15s;white-space:nowrap}
 .hist-btn:hover{border-color:var(--line3);color:var(--tx)}
 .hist-count{background:var(--gold-l);color:var(--gold-m);border-radius:20px;padding:1px 7px;font-size:11px;font-weight:700}
 
@@ -91,7 +91,7 @@ html,body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size
 .err-msg{padding:10px 12px;background:var(--red-l);border-radius:9px;font-size:12px;color:var(--red);margin-top:12px;border:1px solid rgba(240,91,106,.2)}
 
 /* ── Doc type ── */
-.dtype-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.dtype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
 .dtype{background:var(--bg3);border:1px solid var(--line2);border-radius:11px;padding:14px 10px 12px;cursor:pointer;transition:all .18s;text-align:center}
 .dtype:hover{border-color:var(--line3);background:var(--bg4)}
 .dtype.sel{border-color:var(--gold);background:var(--gold-l);box-shadow:0 0 0 1px var(--gold)}
@@ -241,6 +241,51 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
 .ctrl-validation.warn{background:rgba(240,168,76,0.08);border:1px solid rgba(240,168,76,0.3);color:#F0A84C}
 .ctrl-validation.err{background:rgba(240,91,106,0.08);border:1px solid rgba(240,91,106,0.3);color:#F05B6A}
 
+
+/* ── Medical Folder ── */
+.folder-overlay{position:fixed;inset:0;background:rgba(10,10,15,.78);z-index:800;display:none;align-items:flex-start;justify-content:flex-end}
+.folder-overlay.open{display:flex}
+.folder-panel{width:min(560px,100vw);height:100vh;background:var(--bg2);border-right:1px solid var(--line2);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.folder-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg2);z-index:1}
+.folder-title{font-size:15px;font-weight:700;color:var(--tx)}
+.folder-body{flex:1;padding:14px}
+.folder-search{margin-bottom:14px}
+.folder-search input{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;color:var(--tx);font-family:var(--font);font-size:14px}
+.folder-search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.patient-card{background:var(--bg3);border:1px solid var(--line2);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:all .15s}
+.patient-card:hover{border-color:var(--gold);background:var(--gold-l)}
+.patient-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.patient-name{font-size:14px;font-weight:700;color:var(--tx)}
+.patient-id{font-size:11px;color:var(--tx3);font-family:monospace}
+.patient-meta{font-size:12px;color:var(--tx2);margin-top:3px}
+.patient-count{display:inline-block;margin-top:6px;padding:3px 10px;background:var(--gold-l);color:var(--gold-m);font-size:11px;font-weight:700;border-radius:20px}
+.folder-empty{padding:40px 20px;text-align:center;color:var(--tx3);font-size:13px;line-height:1.7}
+.folder-empty svg{opacity:.25;margin-bottom:14px}
+.patient-detail-view{padding:14px}
+.patient-back-btn{background:none;border:none;color:var(--gold-m);cursor:pointer;font-size:13px;font-family:var(--font);padding:6px 0;margin-bottom:12px;display:flex;align-items:center;gap:5px}
+.patient-detail-head{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.patient-detail-name{font-size:18px;font-weight:700;color:var(--tx);margin-bottom:4px}
+.patient-detail-meta{font-size:12px;color:var(--tx2);line-height:1.7}
+.patient-docs-list{display:flex;flex-direction:column;gap:8px}
+.patient-doc-card{background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:12px 14px}
+.patient-doc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.patient-doc-type{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--gold-m)}
+.patient-doc-serial{font-size:10px;color:var(--tx3);font-family:monospace}
+.patient-doc-stamp{font-size:11px;color:var(--tx3);margin-bottom:8px}
+.patient-doc-actions{display:flex;gap:5px;flex-wrap:wrap}
+.doc-chip{padding:4px 10px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);border:1px solid var(--line2);background:transparent;color:var(--tx2);transition:all .15s}
+.doc-chip:hover{color:var(--tx);background:rgba(255,255,255,.04)}
+.doc-chip.gold{background:var(--gold-l);border-color:var(--gold);color:var(--gold-m)}
+
+
+/* ── Profile system ── */
+.profile-sec{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.profile-sec:last-of-type{border:none}
+.profile-sec-label{font-size:10px;font-weight:600;color:var(--tx3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px}
+.profile-input{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--line2);border-radius:9px;color:var(--tx);font-family:var(--font);font-size:14px;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}
+.profile-input::placeholder{color:var(--tx3)}
+.profile-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
+
 @media(max-width:700px){
   /* layout */
   .workspace{grid-template-columns:1fr;height:auto;overflow:visible}
@@ -248,11 +293,14 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
   .pane-right{display:block;padding:14px;border-top:2px solid var(--gold)}
   /* grids */
   .g2,.dtype-grid,.drug-entry-fields{grid-template-columns:1fr}
-  /* topbar */
-  .topbar{padding:10px 14px;gap:10px;flex-wrap:wrap}
-  .topbar-title{font-size:14px}
-  .hist-btn{padding:5px 10px;font-size:11px}
-  .db-pill{font-size:10px;padding:4px 9px}
+  /* topbar — compact on mobile */
+  .topbar{padding:10px 12px;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .topbar-title{font-size:13px;white-space:nowrap}
+  .hist-btn{padding:8px 10px;font-size:11px;flex-shrink:0;min-width:38px;justify-content:center}
+  .hist-btn .btn-text{display:none}
+  .hist-btn .hist-count{margin-right:2px}
+  .db-pill{display:none}
+  .topbar-logo{width:32px;height:32px;flex-shrink:0}
   /* sections */
   .sec{border-radius:11px;margin-bottom:8px}
   .sec-head{padding:12px 14px;gap:10px}
@@ -282,6 +330,18 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
 }
 @media(max-width:400px){
   .dtype-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── Profile system ── */
+.profile-sec{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.profile-sec:last-of-type{border:none}
+.profile-sec-label{font-size:10px;font-weight:600;color:var(--tx3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px}
+.profile-input{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--line2);border-radius:9px;color:var(--tx);font-family:var(--font);font-size:14px;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}
+.profile-input::placeholder{color:var(--tx3)}
+.profile-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
+
+@media(max-width:700px) and (min-width:401px){
+  .dtype-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media print{
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -319,14 +379,90 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
   </div>
 </div>
 
+<!-- Profile panel -->
+<div class="hist-overlay" id="profileOverlay" onclick="closeProfile(event)">
+  <div class="hist-panel" style="width:min(480px,100vw)">
+    <div class="hist-panel-head">
+      <div class="hist-panel-title">פרופיל רופא</div>
+      <button class="hist-close" onclick="closeProfilePanel()">✕</button>
+    </div>
+    <div style="padding:16px;overflow-y:auto;flex:1">
+      <div style="font-size:11px;color:var(--tx3);margin-bottom:16px;line-height:1.6">
+        הגדרות שיחולו על כל מסמך חדש. הפרטים נשמרים בדפדפן של מחשב זה בלבד.
+      </div>
+
+      <div class="profile-sec">
+        <div class="profile-sec-label">מספר רישיון</div>
+        <input type="text" id="profLicense" placeholder="מספר רישיון רופא" maxlength="7" class="profile-input"/>
+      </div>
+
+      <div class="profile-sec">
+        <div class="profile-sec-label">כותרת מסמך</div>
+        <div class="header-tabs" style="margin-bottom:10px">
+          <button class="htab" id="profHtab-logo" onclick="profSwitchHTab('logo')">לוגו</button>
+          <button class="htab" id="profHtab-text" onclick="profSwitchHTab('text')">טקסט חופשי</button>
+        </div>
+        <div id="profHpanel-logo">
+          <div class="logo-drop" id="profLogoArea">
+            <input type="file" id="profLogoFile" accept="image/*" onchange="profHandleLogo(event)"/>
+            <div id="profLogoContent">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--tx3);display:block;margin:0 auto 6px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="logo-hint">גרור תמונה או לחץ לבחירה</div>
+            </div>
+          </div>
+        </div>
+        <div id="profHpanel-text" style="display:none">
+          <div id="profTextLines"></div>
+          <button class="add-line-btn" onclick="profAddTextLine()" style="margin-top:8px">+ הוסף שורה</button>
+        </div>
+      </div>
+
+      <div class="profile-sec">
+        <div class="profile-sec-label">פרטי מרפאה</div>
+        <input type="text" id="profClinicAddress" placeholder="כתובת המרפאה" class="profile-input"/>
+        <input type="text" id="profClinicPhone" placeholder="טלפון לבירורים" class="profile-input" style="margin-top:8px"/>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)">
+        <button class="btn-gold" onclick="saveProfile()" style="flex:1">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-left:5px"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          שמור פרופיל
+        </button>
+        <button class="btn-ghost btn-danger" onclick="clearProfile()" style="padding:10px 16px">מחק</button>
+      </div>
+
+      <div id="profSaveStatus" style="font-size:11px;color:var(--teal);margin-top:10px;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Medical Folder panel -->
+<div class="folder-overlay" id="folderOverlay" onclick="closeFolder(event)">
+  <div class="folder-panel">
+    <div class="folder-head">
+      <div class="folder-title" id="folderHeadTitle">תיקיה רפואית</div>
+      <button class="hist-close" onclick="closeFolderPanel()">✕</button>
+    </div>
+    <div class="folder-body" id="folderBody"></div>
+  </div>
+</div>
+
 <!-- Top bar -->
 <div class="topbar">
   <div class="topbar-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.85)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
   <div class="topbar-title">מסמכים רפואיים</div>
   <div class="topbar-right">
-    <button class="hist-btn" onclick="openHist()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      היסטוריה <span class="hist-count" id="histCount">0</span>
+    <button class="hist-btn" onclick="openProfile()" title="פרופיל רופא">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+      <span class="btn-text">פרופיל</span>
+    </button>
+    <button class="hist-btn" onclick="openFolder()" title="תיקיה רפואית">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="btn-text">תיקיה</span><span class="hist-count" id="folderCount">0</span>
+    </button>
+    <button class="hist-btn" onclick="openHist()" title="היסטוריה">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span class="btn-text">היסטוריה</span><span class="hist-count" id="histCount">0</span>
     </button>
     <div class="db-pill"><span class="db-dot" id="dbDot"></span><span id="dbLabel">טוען...</span></div>
   </div>
@@ -420,6 +556,8 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
           <div class="dtype" id="dt_sick" onclick="selDoc('sick')"><span class="dtype-ico">📋</span><div class="dtype-name">אישור מחלה</div><div class="dtype-en">SICK LEAVE</div></div>
           <div class="dtype" id="dt_rx" onclick="selDoc('rx')"><span class="dtype-ico">💊</span><div class="dtype-name">מרשם תרופה</div><div class="dtype-en">PRESCRIPTION</div></div>
           <div class="dtype" id="dt_ctrl" onclick="selDoc('ctrl')"><span class="dtype-ico">⚠️</span><div class="dtype-name">סם מסוכן</div><div class="dtype-en">CONTROLLED</div></div>
+          <div class="dtype" id="dt_visit" onclick="selDoc('visit')"><span class="dtype-ico">✅</span><div class="dtype-name">אישור ביקור</div><div class="dtype-en">VISIT CONFIRM</div></div>
+          <div class="dtype" id="dt_exam" onclick="selDoc('exam')"><span class="dtype-ico">🩺</span><div class="dtype-name">תיעוד בדיקה</div><div class="dtype-en">EXAMINATION</div></div>
         </div>
         <div id="docFields"></div>
       </div>
@@ -501,6 +639,136 @@ const $=id=>document.getElementById(id);
 const gv=id=>{const e=$(id);return e?e.value:''};
 
 /* ── DB ── */
+
+/* ── Profile system ── */
+let profLogoDataURL=null, profLogoCentered=false, profActiveHTab='logo';
+let profTextLines=[{text:'',align:'right'}];
+
+function openProfile(){
+  const p=getProfile();
+  $('profLicense').value=p.license||'';
+  $('profClinicAddress').value=p.clinicAddress||'';
+  $('profClinicPhone').value=p.clinicPhone||'';
+  profLogoDataURL=p.logoDataURL||null;
+  profLogoCentered=p.logoCentered||false;
+  profActiveHTab=p.headerType||'logo';
+  profTextLines=(p.textLines&&p.textLines.length)?p.textLines:[{text:'',align:'right'}];
+  profSwitchHTab(profActiveHTab);
+  profRenderLogo();
+  profRenderTextLines();
+  $('profSaveStatus').textContent='';
+  $('profileOverlay').className='hist-overlay open';
+}
+function closeProfile(e){if(e.target===$('profileOverlay'))closeProfilePanel();}
+function closeProfilePanel(){$('profileOverlay').className='hist-overlay';}
+
+function getProfile(){
+  try{return JSON.parse(localStorage.getItem('dr_profile')||'{}');}catch{return{};}
+}
+function saveProfile(){
+  const profile={
+    license:$('profLicense').value.trim(),
+    clinicAddress:$('profClinicAddress').value.trim(),
+    clinicPhone:$('profClinicPhone').value.trim(),
+    headerType:profActiveHTab,
+    logoDataURL:profLogoDataURL,
+    logoCentered:profLogoCentered,
+    textLines:profTextLines.filter(l=>l.text.trim())
+  };
+  try{
+    localStorage.setItem('dr_profile',JSON.stringify(profile));
+    if(profile.license) localStorage.setItem('dr_license',profile.license);
+    $('profSaveStatus').textContent='✓ הפרופיל נשמר בהצלחה';
+    applyProfileToForm(profile);
+    setTimeout(()=>{closeProfilePanel();},700);
+  }catch(e){
+    $('profSaveStatus').style.color='var(--red)';
+    $('profSaveStatus').textContent='שגיאה בשמירה: '+e.message;
+  }
+}
+function clearProfile(){
+  if(!confirm('למחוק את הפרופיל השמור?'))return;
+  localStorage.removeItem('dr_profile');
+  $('profLicense').value='';
+  $('profClinicAddress').value='';
+  $('profClinicPhone').value='';
+  profLogoDataURL=null;profLogoCentered=false;
+  profTextLines=[{text:'',align:'right'}];
+  profRenderLogo();profRenderTextLines();
+  $('profSaveStatus').textContent='✓ הפרופיל נמחק';
+}
+
+function profSwitchHTab(t){
+  profActiveHTab=t;
+  $('profHtab-logo').className='htab'+(t==='logo'?' active':'');
+  $('profHtab-text').className='htab'+(t==='text'?' active':'');
+  $('profHpanel-logo').style.display=t==='logo'?'block':'none';
+  $('profHpanel-text').style.display=t==='text'?'block':'none';
+}
+
+function profHandleLogo(e){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>2*1024*1024){alert('קובץ גדול מדי');return;}
+  const reader=new FileReader();
+  reader.onload=ev=>{profLogoDataURL=ev.target.result;profRenderLogo();};
+  reader.readAsDataURL(file);
+}
+function profRenderLogo(){
+  const content=$('profLogoContent');
+  if(!profLogoDataURL){
+    $('profLogoArea').style.cursor='pointer';
+    const inp=$('profLogoFile');if(inp)inp.style.pointerEvents='auto';
+    content.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--tx3);display:block;margin:0 auto 6px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><div class="logo-hint">גרור תמונה או לחץ לבחירה</div>';
+    return;
+  }
+  $('profLogoArea').style.cursor='default';
+  const inp=$('profLogoFile');if(inp)inp.style.pointerEvents='none';
+  content.innerHTML='<div style="text-align:'+(profLogoCentered?'center':'right')+'"><img src="'+profLogoDataURL+'" class="logo-preview'+(profLogoCentered?' centered':'')+'"/></div><div class="logo-ctrl"><label class="toggle-wrap" onclick="profToggleLogoAlign()"><div class="tog-track'+(profLogoCentered?' on':'')+'"><div class="tog-thumb"></div></div>יישור למרכז</label><button style="font-size:11px;color:var(--red);background:none;border:none;cursor:pointer;font-family:var(--font)" onclick="profClearLogo(event)">הסר</button></div>';
+}
+function profToggleLogoAlign(){profLogoCentered=!profLogoCentered;profRenderLogo();}
+function profClearLogo(e){e.stopPropagation();profLogoDataURL=null;profLogoCentered=false;profRenderLogo();}
+
+function profRenderTextLines(){
+  const el=$('profTextLines');if(!el)return;
+  el.innerHTML=profTextLines.map(function(l,i){
+    return '<div class="text-line-row" style="margin-bottom:6px"><input type="text" value="'+l.text.replace(/"/g,'&quot;')+'" placeholder="שורת טקסט '+(i+1)+'..." oninput="profTextLines['+i+'].text=this.value"/><button class="align-btn'+(l.align==='right'?' active':'')+'" onclick="profSetAlign('+i+',\'right\')">←</button><button class="align-btn'+(l.align==='center'?' active':'')+'" onclick="profSetAlign('+i+',\'center\')">☰</button><button class="align-btn'+(l.align==='left'?' active':'')+'" onclick="profSetAlign('+i+',\'left\')">→</button>'+(profTextLines.length>1?'<button class="btn-danger" onclick="profRemoveTextLine('+i+')" style="padding:3px 7px">✕</button>':'<span style="width:28px"></span>')+'</div>';
+  }).join('');
+}
+function profAddTextLine(){profTextLines.push({text:'',align:'right'});profRenderTextLines();}
+function profRemoveTextLine(i){profTextLines.splice(i,1);profRenderTextLines();}
+function profSetAlign(i,a){profTextLines[i].align=a;profRenderTextLines();}
+
+function applyProfileToForm(profile){
+  if(profile.license && dbReady){
+    $('licIn').value=profile.license;
+    lookup(true);
+  }
+  if(profile.headerType==='logo' && profile.logoDataURL){
+    if(typeof logoDataURL !== 'undefined'){
+      logoDataURL=profile.logoDataURL;
+      logoCentered=!!profile.logoCentered;
+      if(typeof activeHTab !== 'undefined') activeHTab='logo';
+      if(typeof switchHTab === 'function') switchHTab('logo');
+      if(typeof renderLogoPreview === 'function') renderLogoPreview();
+    }
+  }else if(profile.headerType==='text' && profile.textLines && profile.textLines.length){
+    if(typeof textLines !== 'undefined'){
+      textLines=JSON.parse(JSON.stringify(profile.textLines));
+      if(!textLines.length) textLines=[{text:'',align:'right'}];
+      if(typeof activeHTab !== 'undefined') activeHTab='text';
+      if(typeof switchHTab === 'function') switchHTab('text');
+      if(typeof renderTextLines === 'function') renderTextLines();
+    }
+  }
+  if(typeof liveUpdate === 'function') liveUpdate();
+}
+
+function autoApplyProfileOnLoad(){
+  const p=getProfile();
+  if(p && Object.keys(p).length) applyProfileToForm(p);
+}
+
+
 async function initDB(){
   try{
     const dec=b64=>{const bin=atob(b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return JSON.parse(new TextDecoder().decode(pako.inflate(u)));};
@@ -513,8 +781,13 @@ async function initDB(){
     $('dbDot').className='db-dot ready';
     $('dbLabel').textContent='מאגר נטען';
     // Restore saved license
-    const savedLic=localStorage.getItem('dr_license');
-    if(savedLic){$('licIn').value=savedLic;lookup(true);}
+    // Restore full profile (license, logo, clinic info)
+    autoApplyProfileOnLoad();
+    // Fallback: if no profile, restore just license
+    if(!getProfile().license){
+      const savedLic=localStorage.getItem('dr_license');
+      if(savedLic){$('licIn').value=savedLic;lookup(true);}
+    }
   }catch(e){$('dbLabel').textContent='שגיאה';}
   // Load serial
   docSerial=parseInt(localStorage.getItem('doc_serial')||'0');
@@ -649,6 +922,34 @@ function selDoc(type){
     </div>
     <div id="dateErr" style="font-size:11px;color:var(--red);margin-top:4px;display:none">תאריך סיום לפני תאריך התחלה</div>
     <div class="grid" style="margin-top:10px"><div class="field"><label>אבחנה</label><textarea id="skDg" placeholder="אבחנה רפואית..." oninput="liveUpdate()"></textarea></div></div>`;
+  }else if(type==='visit'){
+    f.innerHTML=`<div class="form-sep"></div>
+    <div class="grid g2" style="margin-top:0">
+      <div class="field"><label>שעת ביקור</label><input type="time" id="vsTime" oninput="liveUpdate()"/></div>
+      <div class="field"><label>מטרת האישור</label><select id="vsPurpose" onchange="liveUpdate()">
+        <option>בית ספר / מוסד חינוכי</option>
+        <option>מקום עבודה</option>
+        <option>צבא</option>
+        <option>ביטוח לאומי</option>
+        <option>אחר</option>
+      </select></div>
+    </div>
+    <div class="grid" style="margin-top:10px"><div class="field"><label>הערות (אופציונלי)</label><textarea id="vsNotes" placeholder="הערות נוספות..." style="min-height:50px" oninput="liveUpdate()"></textarea></div></div>`;
+  }else if(type==='exam'){
+    f.innerHTML=`<div class="form-sep"></div>
+    <div class="grid" style="margin-top:0"><div class="field"><label>תלונה עיקרית</label><textarea id="exChief" placeholder="מה התלונה העיקרית של המטופל..." oninput="liveUpdate()"></textarea></div></div>
+    <div class="grid" style="margin-top:10px"><div class="field"><label>מחלה נוכחית / אנמנזה</label><textarea id="exHistory" placeholder="תיאור המחלה הנוכחית — משך, התפתחות, סימפטומים נלווים..." style="min-height:80px" oninput="liveUpdate()"></textarea></div></div>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="field"><label>לחץ דם</label><input type="text" id="exBP" placeholder="לדוגמה: 120/80" oninput="liveUpdate()"/></div>
+      <div class="field"><label>דופק</label><input type="text" id="exPulse" placeholder="לדוגמה: 72" oninput="liveUpdate()"/></div>
+    </div>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="field"><label>חום גוף</label><input type="text" id="exTemp" placeholder="לדוגמה: 37.0°C" oninput="liveUpdate()"/></div>
+      <div class="field"><label>סטורציה</label><input type="text" id="exSat" placeholder="לדוגמה: 98%" oninput="liveUpdate()"/></div>
+    </div>
+    <div class="grid" style="margin-top:10px"><div class="field"><label>ממצאי בדיקה גופנית</label><textarea id="exFindings" placeholder="תאר את ממצאי הבדיקה הגופנית..." style="min-height:70px" oninput="liveUpdate()"></textarea></div></div>
+    <div class="grid" style="margin-top:10px"><div class="field"><label>אבחנה רפואית</label><textarea id="exDiag" placeholder="אבחנה / הערכה קלינית..." oninput="liveUpdate()"></textarea></div></div>
+    <div class="grid" style="margin-top:10px"><div class="field"><label>המלצות רפואיות</label><textarea id="exRecs" placeholder="המלצות — בדיקות נוספות, טיפול, מעקב, הפניות..." style="min-height:70px" oninput="liveUpdate()"></textarea></div></div>`;
   }else{
     f.innerHTML=`<div class="form-sep"></div>
     <div id="drugListBox" class="drug-list-box"></div>
@@ -795,6 +1096,38 @@ function buildDocData(serial, stamp){
       <p><strong>מתאריך:</strong> ${fmtD(gv('skF'))||'—'} &nbsp;·&nbsp; <strong>עד:</strong> ${fmtD(gv('skT'))||'—'}</p>
       <p><strong>אבחנה:</strong> ${gv('skDg')||'—'}</p>
       <p style="margin-top:8px;font-style:italic;color:#444">מאשר/ת בזאת כי המטופל/ת הנ"ל נמצא/ת במנוחה רפואית מלאה בתקופה הנ"ל.</p></div>`;
+  }else if(curDocType==='visit'){
+    title='אישור ביקור'; subtitle='Visit Confirmation';
+    const vsTime=gv('vsTime'), vsPurpose=gv('vsPurpose')||'בית ספר / מוסד חינוכי', vsNotes=gv('vsNotes');
+    content=`<div class="doc-sec"><h4>אישור ביקור</h4>
+      <p style="margin-bottom:8px">הריני לאשר בזאת כי המטופל/ת הנ"ל ביקר/ה במרפאה בתאריך <strong>${stamp.split(' · ')[0]}</strong>${vsTime?` בשעה <strong>${vsTime}</strong>`:''}.</p>
+      <p><strong>מיועד עבור:</strong> ${vsPurpose}</p>
+      ${vsNotes?`<p style="margin-top:8px"><strong>הערות:</strong> ${vsNotes}</p>`:''}
+      <p style="margin-top:12px;font-style:italic;color:#444">אישור זה נמסר לבקשת המטופל/ת לצורך הצגה בפני הגוף המבקש.</p></div>`;
+  }else if(curDocType==='exam'){
+    title='תיעוד בדיקה רפואית'; subtitle='Medical Examination Record';
+    const chief=gv('exChief'), history=gv('exHistory');
+    const bp=gv('exBP'), pulse=gv('exPulse'), temp=gv('exTemp'), sat=gv('exSat');
+    const findings=gv('exFindings'), diag=gv('exDiag'), recs=gv('exRecs');
+
+    let vitalsRow='';
+    if(bp||pulse||temp||sat){
+      const vitals=[];
+      if(bp)vitals.push(`<strong>ל.ד.:</strong> ${bp}`);
+      if(pulse)vitals.push(`<strong>דופק:</strong> ${pulse}`);
+      if(temp)vitals.push(`<strong>חום:</strong> ${temp}`);
+      if(sat)vitals.push(`<strong>סטורציה:</strong> ${sat}`);
+      vitalsRow=`<div class="doc-sec"><h4>סימנים חיוניים</h4><p>${vitals.join(' &nbsp;·&nbsp; ')}</p></div>`;
+    }
+
+    content=`
+      ${chief?`<div class="doc-sec"><h4>תלונה עיקרית</h4><p>${chief}</p></div>`:''}
+      ${history?`<div class="doc-sec"><h4>מחלה נוכחית</h4><p>${history}</p></div>`:''}
+      ${vitalsRow}
+      ${findings?`<div class="doc-sec"><h4>ממצאי בדיקה גופנית</h4><p>${findings}</p></div>`:''}
+      ${diag?`<div class="doc-sec"><h4>אבחנה</h4><p>${diag}</p></div>`:''}
+      ${recs?`<div class="doc-sec"><h4>המלצות</h4><p>${recs}</p></div>`:''}
+    `;
   }else if(curDocType==='ctrl'){
     title='מרשם לסם מסוכן'; subtitle='Controlled Substance Prescription';
     const diag=gv('ctrlDiag');
@@ -865,7 +1198,7 @@ function buildDocData(serial, stamp){
     </div>
   </div></div>`;
 
-  return{html,title,ptN,drName,stamp,serial};
+  return{html,title,ptN,ptI,drName,stamp,serial};
 }
 
 /* ── Live update ── */
@@ -1113,7 +1446,7 @@ function issueDoc(){
 
   // Save to history
   const hist=getHistory();
-  hist.unshift({serial,stamp,title:data.title,ptN:data.ptN,drName:data.drName,html:data.html});
+  hist.unshift({serial,stamp,title:data.title,ptN:data.ptN,ptI:data.ptI,drName:data.drName,html:data.html,docType:curDocType});
   if(hist.length>50)hist.pop(); // keep last 50
   localStorage.setItem('doc_history',JSON.stringify(hist));
   renderHistCount();
@@ -1130,6 +1463,7 @@ function getHistory(){
 function renderHistCount(){
   const h=getHistory();
   $('histCount').textContent=h.length;
+  renderFolderCount();
 }
 function openHist(){
   const hist=getHistory();
@@ -1173,6 +1507,128 @@ async function pdfFromHist(i){
   await exportPDF(h.ptN, h.serial);
 }
 
+/* ═══ Medical Folder ═══ */
+function getPatientFolder(){
+  // Build folder index from history: groups docs by patient ID
+  const hist=getHistory();
+  const patients={};
+  for(const doc of hist){
+    const id=doc.ptI||'unknown';
+    if(!patients[id]){
+      patients[id]={id,name:doc.ptN||'לא ידוע',docs:[],lastVisit:doc.stamp};
+    }
+    patients[id].docs.push(doc);
+    // lastVisit = most recent (hist is sorted newest first)
+    if(!patients[id].lastVisit||doc.stamp>patients[id].lastVisit){
+      patients[id].lastVisit=doc.stamp;
+    }
+  }
+  return Object.values(patients).sort((a,b)=>b.lastVisit.localeCompare(a.lastVisit));
+}
+
+function renderFolderCount(){
+  const patients=getPatientFolder();
+  const el=$('folderCount');
+  if(el)el.textContent=patients.length;
+}
+
+function openFolder(){
+  renderFolderList();
+  $('folderOverlay').className='folder-overlay open';
+}
+function closeFolder(e){if(e.target===$('folderOverlay'))closeFolderPanel();}
+function closeFolderPanel(){$('folderOverlay').className='folder-overlay';}
+
+function renderFolderList(query){
+  $('folderHeadTitle').textContent='תיקיה רפואית';
+  const body=$('folderBody');
+  const patients=getPatientFolder();
+
+  if(!patients.length){
+    body.innerHTML=`<div class="folder-empty">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <div>אין עדיין מטופלים בתיקיה</div>
+      <div style="font-size:11px;margin-top:6px;color:var(--tx3)">מסמכים שתנפיק יירשמו כאן אוטומטית לפי ת.ז. המטופל</div>
+    </div>`;
+    return;
+  }
+
+  const q=(query||'').trim().toLowerCase();
+  const filtered=q?patients.filter(p=>
+    p.name.toLowerCase().includes(q)||p.id.includes(q)
+  ):patients;
+
+  body.innerHTML=`
+    <div class="folder-search">
+      <input type="text" id="folderSearchIn" placeholder="חיפוש לפי שם או ת.ז..." oninput="renderFolderList(this.value)" value="${q}" autocomplete="off"/>
+    </div>
+    ${filtered.length===0?`<div class="folder-empty" style="padding:20px">לא נמצאו מטופלים</div>`:
+      filtered.map(p=>`
+        <div class="patient-card" onclick="viewPatient('${p.id}')">
+          <div class="patient-card-head">
+            <div class="patient-name">${p.name}</div>
+            <div class="patient-id">ת.ז. ${p.id}</div>
+          </div>
+          <div class="patient-meta">ביקור אחרון: ${p.lastVisit.split(' · ')[0]}</div>
+          <div class="patient-count">${p.docs.length} מסמך${p.docs.length===1?'':'ים'}</div>
+        </div>
+      `).join('')
+    }
+  `;
+
+  // Keep focus on search after re-render
+  if(q){
+    const inp=$('folderSearchIn');
+    if(inp){inp.focus();inp.setSelectionRange(q.length,q.length);}
+  }
+}
+
+function viewPatient(id){
+  const patients=getPatientFolder();
+  const p=patients.find(x=>x.id===id);
+  if(!p)return;
+  $('folderHeadTitle').textContent='תיק מטופל';
+  const body=$('folderBody');
+  const typeLabels={
+    'er':'הפנייה למיון','sick':'אישור מחלה','rx':'מרשם תרופה',
+    'ctrl':'מרשם לסם מסוכן','visit':'אישור ביקור','exam':'תיעוד בדיקה'
+  };
+  const typeIcons={
+    'er':'🚑','sick':'📋','rx':'💊','ctrl':'⚠️','visit':'✅','exam':'🩺'
+  };
+
+  body.innerHTML=`<div class="patient-detail-view">
+    <button class="patient-back-btn" onclick="renderFolderList()">← חזרה לרשימה</button>
+    <div class="patient-detail-head">
+      <div class="patient-detail-name">${p.name}</div>
+      <div class="patient-detail-meta">
+        <div>ת.ז. ${p.id}</div>
+        <div>${p.docs.length} מסמכים · ביקור אחרון: ${p.lastVisit}</div>
+      </div>
+    </div>
+    <div class="patient-docs-list">
+      ${p.docs.map(d=>{
+        const tLabel=d.title||'מסמך';
+        const hist=getHistory();
+        const globalIdx=hist.findIndex(h=>h.serial===d.serial);
+        return `<div class="patient-doc-card">
+          <div class="patient-doc-top">
+            <div class="patient-doc-type">${d.title||'מסמך'}</div>
+            <div class="patient-doc-serial">מס׳ ${d.serial}</div>
+          </div>
+          <div class="patient-doc-stamp">${d.stamp}</div>
+          <div class="patient-doc-actions">
+            <button class="doc-chip gold" onclick="loadFromHist(${globalIdx})">פתח</button>
+            <button class="doc-chip" onclick="printFromHist(${globalIdx})">הדפס</button>
+            <button class="doc-chip" onclick="pdfFromHist(${globalIdx})">PDF</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+
 /* ── Print / PDF ── */
 function doPrint(){
   const isMob=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -1194,104 +1650,139 @@ async function doPDF(){
 async function exportPDF(ptN, serial){
   const loader=$('pdfLoader'); loader.classList.add('show');
   const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const dpr=window.devicePixelRatio||1;
-  // Use scale 3 on mobile (high-DPI screens), scale 3 on desktop for crisp output
-  const scale = Math.max(3, dpr * 2);
 
   try{
     const paper=document.querySelector('#previewContent .doc-paper');
     if(!paper){alert('נא להנפיק מסמך תחילה');return;}
 
-    // Clone into a fixed 794px (A4) offscreen container for consistent rendering
+    // ── Step 1: Clone into fixed A4-width offscreen container ──
+    const A4_W=794; // 210mm @ 96dpi
+    const MARGIN=56; // ~15mm in pixels
+
     const wrapper=document.createElement('div');
     wrapper.style.cssText=[
-      'position:fixed','top:-99999px','left:0',
-      'width:794px','min-height:1px',
-      'background:#FAFAF8','direction:rtl',
+      'position:fixed','top:-99999px','left:0','z-index:-9999',
+      `width:${A4_W}px`,`min-width:${A4_W}px`,`max-width:${A4_W}px`,
+      'background:#ffffff','direction:rtl','overflow:visible',
       'font-family:"Frank Ruhl Libre",serif',
-      'color:#111','line-height:1.8',
-      'padding:0','margin:0','z-index:-1'
     ].join(';');
 
     const clone=paper.cloneNode(true);
     clone.style.cssText=[
-      'width:794px','background:#FAFAF8',
-      'padding:60px 60px 50px','margin:0',
-      'box-shadow:none','border:none','border-radius:0',
+      `width:${A4_W}px`,`padding:${MARGIN}px`,
+      'background:#ffffff','color:#111111',
       'direction:rtl','font-family:"Frank Ruhl Libre",serif',
-      'color:#111','line-height:1.8','font-size:14px'
+      'font-size:14px','line-height:1.8',
+      'box-shadow:none','border:none','border-radius:0','margin:0'
     ].join(';');
 
-    // Fix all internal elements direction
+    // Force all child elements to correct direction and colors
+    clone.querySelectorAll('*').forEach(el=>{
+      el.style.direction='rtl';
+      el.style.webkitPrintColorAdjust='exact';
+      el.style.printColorAdjust='exact';
+    });
+
     wrapper.appendChild(clone);
     document.body.appendChild(wrapper);
 
-    // Wait for fonts/images to settle
-    await new Promise(r=>setTimeout(r,300));
+    // ── Step 2: Wait for fonts AND layout to settle ──
+    await document.fonts.ready;
+    await new Promise(r=>requestAnimationFrame(r));
+    await new Promise(r=>requestAnimationFrame(r));
+    await new Promise(r=>setTimeout(r,400));
+
+    // ── Step 3: Render at maximum resolution ──
+    // scale:4 = ~384dpi (4× the 96dpi base) — highest practical for print
+    const SCALE=4;
 
     const canvas=await html2canvas(wrapper,{
-      scale,
+      scale:SCALE,
       useCORS:true,
       allowTaint:true,
-      backgroundColor:'#FAFAF8',
+      backgroundColor:'#ffffff',
       logging:false,
-      width:794,
-      windowWidth:794,
-      imageTimeout:5000,
+      width:A4_W,
+      windowWidth:A4_W,
+      imageTimeout:8000,
+      removeContainer:true,
       onclone:(doc,el)=>{
+        doc.body.style.direction='rtl';
+        doc.body.style.background='#ffffff';
         el.style.direction='rtl';
-        // Force all text elements to be visible
+        el.style.background='#ffffff';
+        // Ensure Frank Ruhl Libre is applied everywhere in clone
         doc.querySelectorAll('*').forEach(n=>{
-          if(n.style) n.style.webkitPrintColorAdjust='exact';
+          if(n.style){
+            n.style.webkitPrintColorAdjust='exact';
+            n.style.printColorAdjust='exact';
+          }
         });
       }
     });
+
     document.body.removeChild(wrapper);
 
+    // ── Step 4: Build PDF ──
     const {jsPDF}=window.jspdf;
-    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+    const pdf=new jsPDF({
+      orientation:'portrait',
+      unit:'mm',
+      format:'a4',
+      compress:false  // No compression = maximum image quality
+    });
+
     const pdfW=pdf.internal.pageSize.getWidth();   // 210mm
     const pdfH=pdf.internal.pageSize.getHeight();  // 297mm
-    const ratio=pdfW/canvas.width;
-    const scaledH=canvas.height*ratio;
+    const mmPerPx=pdfW/canvas.width;
+    const totalHeightMm=canvas.height*mmPerPx;
 
-    if(scaledH<=pdfH){
-      // Single page — use PNG for crisp text
-      pdf.addImage(canvas.toDataURL('image/png'),'PNG',0,0,pdfW,scaledH,undefined,'FAST');
+    // Use PNG — lossless, no JPEG artifacts, best for text
+    if(totalHeightMm<=pdfH){
+      // Single page
+      pdf.addImage(
+        canvas.toDataURL('image/png'),
+        'PNG', 0, 0, pdfW, totalHeightMm,
+        undefined, 'NONE'  // NONE = no recompression
+      );
     }else{
-      // Multi-page
+      // Multi-page: slice canvas precisely at A4 boundaries
+      const pageHeightPx=Math.floor(pdfH/mmPerPx);
       let yo=0;
       while(yo<canvas.height){
-        const pageHeightPx=Math.floor(pdfH/ratio);
         const sliceH=Math.min(pageHeightPx, canvas.height-yo);
         const tmp=document.createElement('canvas');
-        tmp.width=canvas.width; tmp.height=sliceH;
-        tmp.getContext('2d').drawImage(canvas,0,yo,canvas.width,sliceH,0,0,canvas.width,sliceH);
-        if(yo>0)pdf.addPage();
-        pdf.addImage(tmp.toDataURL('image/png'),'PNG',0,0,pdfW,sliceH*ratio,undefined,'FAST');
+        tmp.width=canvas.width;
+        tmp.height=sliceH;
+        const tctx=tmp.getContext('2d');
+        tctx.fillStyle='#ffffff';
+        tctx.fillRect(0,0,tmp.width,tmp.height);
+        tctx.drawImage(canvas, 0,yo, canvas.width,sliceH, 0,0, canvas.width,sliceH);
+        if(yo>0) pdf.addPage();
+        pdf.addImage(
+          tmp.toDataURL('image/png'),
+          'PNG', 0, 0, pdfW, sliceH*mmPerPx,
+          undefined, 'NONE'
+        );
         yo+=pageHeightPx;
       }
     }
 
+    // ── Step 5: Save ──
+    const dateStr=new Date().toLocaleDateString('he-IL').split('/').join('-');
     const fname=[
-      'מסמך',
-      serial||'',
+      'מסמך', serial||'',
       (ptN||'').replace(/ /g,'_'),
-      new Date().toLocaleDateString('he-IL').replace(/\//g,'-')
+      dateStr
     ].filter(Boolean).join('_')+'.pdf';
 
-    if(isMobile){
-      // iOS/Android: create blob and trigger download
-      const blob=pdf.output('blob');
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url; a.download=fname; a.target='_blank';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},5000);
-    }else{
-      pdf.save(fname);
-    }
+    const blob=pdf.output('blob');
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download=fname; a.target='_blank';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},6000);
 
   }catch(err){
     console.error('PDF error:',err);
