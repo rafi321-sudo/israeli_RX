@@ -2,7 +2,16 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover,user-scalable=yes"/>
+<meta name="theme-color" content="#0F1117"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="מסמכים רפואיים"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="color-scheme" content="dark"/>
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlx1MDVkZVx1MDVlMVx1MDVkZVx1MDVkYlx1MDVkOVx1MDVkZCBcdTA1ZThcdTA1ZTRcdTA1ZDVcdTA1ZDBcdTA1ZDlcdTA1ZDlcdTA1ZGQiLCAic2hvcnRfbmFtZSI6ICJcdTA1ZThcdTA1ZTRcdTA1ZDVcdTA1ZDBcdTA1ZDQiLCAiZGVzY3JpcHRpb24iOiAiXHUwNWRlXHUwNWUyXHUwNWU4XHUwNWRiXHUwNWVhIFx1MDVkNFx1MDVlMFx1MDVlNFx1MDVlN1x1MDVlYSBcdTA1ZGVcdTA1ZTFcdTA1ZGVcdTA1ZGJcdTA1ZDlcdTA1ZGQgXHUwNWU4XHUwNWU0XHUwNWQ1XHUwNWQwXHUwNWQ5XHUwNWQ5XHUwNWRkIiwgInN0YXJ0X3VybCI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJvcmllbnRhdGlvbiI6ICJhbnkiLCAidGhlbWVfY29sb3IiOiAiIzBGMTExNyIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwRjExMTciLCAibGFuZyI6ICJoZSIsICJkaXIiOiAicnRsIiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDt1dGY4LDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIHJ4PScyMCcgZmlsbD0nJTIzQzlBODRDJy8+PHBhdGggZD0nTTIyIDUwaC00bC0zIDlMOSA0MWwtMyA5SDInIHN0cm9rZT0nJTIzMEYxMTE3JyBzdHJva2Utd2lkdGg9JzQnIGZpbGw9J25vbmUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPjwvc3ZnPiIsICJzaXplcyI6ICJhbnkiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ=="/>
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23C9A84C%27/%3E%3Cpath d=%27M22 50h-4l-3 9L9 41l-3 9H2%27 stroke=%27%230F1117%27 stroke-width=%274%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -26,7 +35,12 @@
   --green:#4CC97A;--green-l:rgba(76,201,122,0.1);
   --font:"Frank Ruhl Libre",serif;
 }
-html,body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.6;min-height:100vh;direction:rtl;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.6;min-height:100vh;direction:rtl;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{min-height:100%;min-height:100dvh;overflow-x:hidden}
+body{overflow-x:hidden;min-height:100vh;min-height:100dvh}
+button,[role="button"],input,select,textarea,a{touch-action:manipulation}
+button,[role="button"]{-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+input,select,textarea{-webkit-user-select:text;user-select:text}
 
 /* ── Top bar ── */
 .topbar{display:flex;align-items:center;gap:14px;padding:14px 24px;padding-top:max(14px,env(safe-area-inset-top));padding-right:max(24px,env(safe-area-inset-right));padding-left:max(24px,env(safe-area-inset-left));background:var(--bg2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:200}
@@ -41,7 +55,7 @@ html,body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size
 .hist-count{background:var(--gold-l);color:var(--gold-m);border-radius:20px;padding:1px 7px;font-size:11px;font-weight:700}
 
 /* ── Two-column layout ── */
-.workspace{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 57px)}
+.workspace{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 57px);height:calc(100dvh - 57px)}
 .pane{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px}
 .pane-left{border-left:1px solid var(--line)}
 .pane-right{background:var(--bg)}
@@ -286,51 +300,121 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
 .profile-input::placeholder{color:var(--tx3)}
 .profile-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
 
+/* ═══ TABLET — 700-1024px (iPad, small laptops) ═══ */
+@media(max-width:1024px) and (min-width:701px){
+  .workspace{height:auto;min-height:calc(100vh - 57px)}
+  .pane{padding:16px}
+  .wrap,.app{max-width:100%}
+  /* Slightly tighter spacing */
+  .sec{margin-bottom:10px}
+  .topbar{padding:12px 18px}
+}
+
+/* ═══ MOBILE — 700px and below ═══ */
 @media(max-width:700px){
-  /* layout */
+  /* layout: stacked */
   .workspace{grid-template-columns:1fr;height:auto;overflow:visible}
   .pane-left{border-left:none;border-bottom:1px solid var(--line);padding:14px}
   .pane-right{display:block;padding:14px;border-top:2px solid var(--gold)}
-  /* grids */
+  .pane{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  /* form grids collapse */
   .g2,.dtype-grid,.drug-entry-fields{grid-template-columns:1fr}
-  /* topbar — compact on mobile */
-  .topbar{padding:10px 12px;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .topbar-title{font-size:13px;white-space:nowrap}
-  .hist-btn{padding:8px 10px;font-size:11px;flex-shrink:0;min-width:38px;justify-content:center}
+  /* topbar — horizontal scroll with icon buttons */
+  .topbar{padding:10px 12px;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .topbar::-webkit-scrollbar{display:none}
+  .topbar-title{font-size:13px;white-space:nowrap;flex-shrink:0}
+  .hist-btn{padding:9px 10px;font-size:11px;flex-shrink:0;min-width:40px;min-height:40px;justify-content:center}
   .hist-btn .btn-text{display:none}
   .hist-btn .hist-count{margin-right:2px}
   .db-pill{display:none}
   .topbar-logo{width:32px;height:32px;flex-shrink:0}
   /* sections */
   .sec{border-radius:11px;margin-bottom:8px}
-  .sec-head{padding:12px 14px;gap:10px}
+  .sec-head{padding:14px;gap:10px;min-height:54px}
   .sec-body{padding:0 14px 14px}
-  /* touch targets */
-  .btn-gold,.btn-ghost{padding:12px 18px;font-size:14px;min-height:44px}
-  .sec-badge{width:28px;height:28px}
+  /* touch targets — Apple minimum 44px */
+  .btn-gold,.btn-ghost,.btn-verify,.drug-add-btn{min-height:44px;padding:12px 18px;font-size:14px}
+  button{min-height:40px}
+  .sec-badge{width:30px;height:30px}
   .sec-title{font-size:13px}
-  /* mobile preview toggle */
+  /* inputs — prevent iOS zoom by using 16px minimum */
+  .field input,.field select,.field textarea,.profile-input,.text-line-row input{font-size:16px !important}
+  /* mobile preview toggle visible */
   .mobile-preview-toggle{display:flex}
   /* action row */
-  .action-row{gap:8px;padding-bottom:max(8px,env(safe-area-inset-bottom))}
-  .action-row .btn-gold,.action-row .btn-ghost{flex:1;justify-content:center;padding:13px 10px;font-size:13px}
+  .action-row{gap:8px;padding-bottom:max(12px,env(safe-area-inset-bottom));flex-wrap:wrap}
+  .action-row .btn-gold,.action-row .btn-ghost{flex:1;min-width:calc(50% - 4px);justify-content:center;padding:13px 10px;font-size:13px}
   /* drug add */
-  .drug-add-row{flex-direction:column}
-  .drug-add-btn{width:100%;padding:12px;font-size:14px}
+  .drug-add-row{flex-direction:column;align-items:stretch}
+  .drug-add-btn{width:100%;padding:14px;font-size:14px;min-height:48px}
   /* signature */
-  canvas#sc{height:100px}
-  /* history panel */
-  .hist-panel{width:100vw}
+  canvas#sc{height:110px}
+  .sig-box{min-height:110px}
+  /* history and folder panels — full width on mobile */
+  .hist-panel{width:100vw;max-width:100vw}
   /* doc types */
-  .dtype{padding:12px 8px 10px}
-  .dtype-ico{font-size:20px}
-  .dtype-name{font-size:11px}
-  /* input sizing for iOS - prevent zoom */
-  .field input,.field select,.field textarea{font-size:16px !important}
+  .dtype{padding:12px 8px 10px;min-height:78px}
+  .dtype-ico{font-size:22px}
+  .dtype-name{font-size:11px;line-height:1.3}
+  .dtype-en{font-size:9px}
+  /* logo upload bigger tap area */
+  .logo-drop{padding:22px;min-height:90px}
+  /* profile panel */
+  .profile-sec{margin-bottom:16px;padding-bottom:12px}
 }
+
+/* ═══ SMALL MOBILE — 400px and below ═══ */
 @media(max-width:400px){
+  .wrap,.app{padding:10px}
+  .topbar{padding:8px 10px;gap:6px}
+  .topbar-title{font-size:12px}
+  .hist-btn{padding:8px;min-width:36px}
+  .pane{padding:12px}
+  .sec-head{padding:12px;min-height:50px}
+  .sec-body{padding:0 12px 12px}
   .dtype-grid{grid-template-columns:1fr 1fr}
+  .dtype{padding:10px 6px 8px}
+  .dtype-ico{font-size:20px}
+  .dtype-name{font-size:10px}
+  .dtype-en{display:none}
+  /* action row becomes vertical stack */
+  .action-row .btn-gold,.action-row .btn-ghost{min-width:100%;flex:1 1 100%}
+  .field label{font-size:10px}
 }
+
+/* ═══ LANDSCAPE MOBILE — adjust for horizontal phones ═══ */
+@media(max-width:900px) and (orientation:landscape) and (max-height:500px){
+  .workspace{grid-template-columns:1fr 1fr;height:auto}
+  .pane{max-height:none}
+  .mobile-preview-toggle{display:none}
+  .pane-right{display:block;border-top:none;border-left:1px solid var(--line)}
+  .topbar{position:relative}
+}
+
+/* ═══ HIGH-DPI screens — sharper borders ═══ */
+@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){
+  .sec{border-width:0.5px}
+  .card-divider,.sec-divider{height:0.5px}
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ═══ HOVER — only on devices that support real hover ═══ */
+@media(hover:none){
+  .sec-head:hover,.dtype:hover,.hist-btn:hover,.btn-gold:hover,.btn-ghost:hover,
+  .folder-item:hover,.hist-item:hover,.drug-row:hover,.logo-drop:hover,
+  .card:hover,.drug-entry:hover{background:inherit;border-color:inherit;box-shadow:none}
+  /* Use :active for visual feedback on touch */
+  .sec-head:active{background:rgba(255,255,255,.04)}
+  .dtype:active{opacity:.8}
+  .hist-btn:active,.btn-ghost:active{background:rgba(255,255,255,.08)}
+  .btn-gold:active{opacity:.85}
+  .folder-item:active,.hist-item:active{background:var(--bg4)}
+}
+
 
 /* ── Profile system ── */
 .profile-sec{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
@@ -340,9 +424,7 @@ canvas#sc{display:block;width:100%;height:110px;touch-action:none}
 .profile-input::placeholder{color:var(--tx3)}
 .profile-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
 
-@media(max-width:700px) and (min-width:401px){
-  .dtype-grid{grid-template-columns:repeat(3,1fr)}
-}
+
 @media print{
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html,body{background:#fff!important;margin:0;padding:0}
